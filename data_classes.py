@@ -49,8 +49,8 @@ class DefaultFactoryProduct:
 @dataclass
 class FieldCustomisationProduct:
     name: str
-    price: float = 100  # Default value for price
     creationdatestr: str = field(compare=False, repr=False)  # Exclude creationdatestr from comparison and representation
+    price: float = 100  # Default value for price
 
 # Example usage
 # fieldcustomisationprod1 = FieldCustomisationProduct("Toyota", 100, creationdatestr="2024-01-01")
