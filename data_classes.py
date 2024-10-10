@@ -25,7 +25,7 @@ class ImmutableProduct:
     stock: int
 
 # Example usage
-# immutableproduct = ImmutableProduct("parking", 100, 10_000)
+immutableproduct = ImmutableProduct("parking", 100, 10_000)
 # immutableproduct.price = 10  # Raises a FrozenInstanceError: cannot assign to field 'x'
 
 # 2. Default Factory
@@ -39,8 +39,8 @@ class DefaultFactoryProduct:
     stock: list = field(default_factory=list)  # Use default_factory for mutable types
 
 # Example usage
-# defaultfactoryproduct = DefaultFactoryProduct(name="parking")
-# print(defaultfactoryproduct)  # DefaultFactoryProduct(name='parking', price=100, stock=[])
+defaultfactoryproduct = DefaultFactoryProduct(name="parking")
+print(defaultfactoryproduct)  # DefaultFactoryProduct(name='parking', price=100, stock=[])
 # This ensures that mutable types like lists or dictionaries don't share the same
 # instance across objects, which is a common pitfall in Python.
 
@@ -53,9 +53,9 @@ class FieldCustomisationProduct:
     price: float = 100  # Default value for price
 
 # Example usage
-# fieldcustomisationprod1 = FieldCustomisationProduct("Toyota", 100, creationdatestr="2024-01-01")
-# fieldcustomisationprod2 = FieldCustomisationProduct("Toyota", 100, creationdatestr="2024-02-01")
-# print(fieldcustomisationprod1 == fieldcustomisationprod2)  # True, ignores creationdatestr during comparison
+fieldcustomisationprod1 = FieldCustomisationProduct("Toyota", creationdatestr="2024-01-01", price=100)
+fieldcustomisationprod2 = FieldCustomisationProduct("Toyota", creationdatestr="2024-02-01", price=100)
+print(fieldcustomisationprod1 == fieldcustomisationprod2)  # True, ignores creationdatestr during comparison
 
 # 4. Simple Conversions
 
@@ -70,9 +70,9 @@ class ConversionsProduct:
     price: float
 
 # Example usage
-# conversionsproduct = ConversionsProduct("Laptop", 999.99)
-# print(asdict(conversionsproduct))  # {'name': 'Laptop', 'price': 999.99}
-# print(astuple(conversionsproduct))  # ('Laptop', 999.99)
+conversionsproduct = ConversionsProduct("Laptop", 999.99)
+print(asdict(conversionsproduct))  # {'name': 'Laptop', 'price': 999.99}
+print(astuple(conversionsproduct))  # ('Laptop', 999.99)
 
 # 5. Post init
 
@@ -89,8 +89,8 @@ class PostInitProduct:
         self.total_price = self.base_price * (1 + self.tax_rate)
 
 # Example usage
-# postinitproduct = PostInitProduct(name="Laptop", base_price=1000, tax_rate=0.15)
-# print(postinitproduct.total_price)  # Outputs: 1150.0 (1000 + 15% tax)
+postinitproduct = PostInitProduct(name="Laptop", base_price=1000, tax_rate=0.15)
+print(postinitproduct.total_price)  # Outputs: 1150.0 (1000 + 15% tax)
 
 # 6. Hidden Fields
 
@@ -102,5 +102,5 @@ class HiddenFieldsProduct:
     supplier_code: str = field(repr=False)  # Don't include supplier code in repr output
 
 # type: ignore # Example usage
-# hiddenfieldsproduct = HiddenFieldsProduct(name="Smartphone", price=799.99, supplier_code="SUP12345")
-# print(hiddenfieldsproduct)  # Outputs: Product(name='Smartphone', price=799.99)``
+hiddenfieldsproduct = HiddenFieldsProduct(name="Smartphone", price=799.99, supplier_code="SUP12345")
+print(hiddenfieldsproduct)  # Outputs: Product(name='Smartphone', price=799.99)

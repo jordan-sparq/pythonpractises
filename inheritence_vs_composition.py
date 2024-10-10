@@ -32,8 +32,8 @@ class DiscountedProduct(Product):  # Inherits from Product
         self.total_price -= self.total_price * self.discount
 
 # Example usage:
-# laptop = DiscountedProduct(name="Laptop", base_price=1000, tax_rate=0.15, discount=0.1)
-# print(laptop.total_price)  # Outputs: 1035.0 (1000 + 15% tax, then 10% discount)
+laptop = DiscountedProduct(name="Laptop", base_price=1000, tax_rate=0.15, discount=0.1)
+print(laptop.total_price)  # Outputs: 1035.0 (1000 + 15% tax, then 10% discount)
 
 # 2. Composition
 
