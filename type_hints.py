@@ -44,3 +44,19 @@ class DataProcessor:
     user: User
     callback_function: Callable[[int], str] # Callable that takes an int and returns a str
     item_index: Optional[int] = None  # To store the index of a favorite fruit
+
+@dataclass
+class DataProcessor:
+    """Class to demonstrate different typing features."""
+    integer_value: Optional[int]  # int OR none
+    string_value: Optional[str]    # str OR none
+    float_list: List[float]
+    user: User
+    callback_function: Optional[Callable[[int], str]]  # Callable that takes an int and returns a str
+    item_index: Optional[int] = None  # To store the index of a favorite fruit
+
+    def process_integer(self) -> Optional[str]: # type hint to show output type from the function
+        """Process the integer_value using the callback function."""
+        if self.integer_value is not None:
+            return self.callback_function(self.integer_value)
+        return None
