@@ -38,16 +38,6 @@ class User:
 @dataclass
 class DataProcessor:
     """Class to demonstrate different typing features."""
-    integer_value: Optional[int] # int OR none
-    string_value: Optional[str] # str OR none
-    float_list: List[float]
-    user: User
-    callback_function: Callable[[int], str] # Callable that takes an int and returns a str
-    item_index: Optional[int] = None  # To store the index of a favorite fruit
-
-@dataclass
-class DataProcessor:
-    """Class to demonstrate different typing features."""
     integer_value: Optional[int]  # int OR none
     string_value: Optional[str]    # str OR none
     float_list: List[float]
