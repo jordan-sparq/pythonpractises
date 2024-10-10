@@ -22,11 +22,12 @@
 
 # Any: Represents any type (not recommended for general use as it defeats the purpose of type hints).
 
+# Callable: this is for functions / classes / lambda functions, anything with __call__ implemented
 
 from dataclasses import dataclass, field
-from typing import List, Tuple, Dict, Optional, Union, Any
+from typing import List, Tuple, Dict, Optional, Union, Any, Callable
 
-@dataclass
+@dataclass 
 class User:
     """Class to represent a user with various attributes."""
     name: str
@@ -41,4 +42,5 @@ class DataProcessor:
     string_value: Optional[str] # str OR none
     float_list: List[float]
     user: User
+    callback_function: Callable[[int], str] # Callable that takes an int and returns a str
     item_index: Optional[int] = None  # To store the index of a favorite fruit
