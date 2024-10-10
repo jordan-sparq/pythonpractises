@@ -1,5 +1,5 @@
 # This script shows some basic usage of my favourite packages
-# This includes: Numba, Optuna
+# This includes: Numba, Optuna, pydantic
 
 # 1. Numba
 
@@ -83,3 +83,43 @@ study.optimize(objective, n_trials=50)  # Optimize for 50 trials
 # Print the best hyperparameters
 print("Best hyperparameters: ", study.best_params)
 print("Best accuracy: ", study.best_value)
+
+# 3. pydantic
+
+# Pydantic is a data validation and settings management library in Python that uses Python type annotations 
+# to enforce data types and validate input data.
+
+from pydantic import BaseModel, EmailStr, constr, ValidationError
+from typing import List, Optional
+
+class User(BaseModel):
+    """Class to represent a user."""
+    name: str
+    age: int
+    email: EmailStr  # Validates that the email is a valid email address
+    bio: Optional[constr(max_length=300)] = None  # Optional field with a maximum length of 300 characters
+    favorite_fruits: List[str]  # List of strings
+
+# Example usage
+try:
+    user = User(
+        name="Alice",
+        age=30,
+        email="alice@example.com",
+        bio="Loves hiking and outdoor activities",
+        favorite_fruits=["Apple", "Banana", "Cherry"]
+    )
+    print(user)
+except ValidationError as e:
+    print("Validation error:", e)
+
+# Example of a user with invalid data
+try:
+    invalid_user = User(
+        name="Bob",
+        age=25,
+        email="not-an-email",  # Invalid email
+        favorite_fruits=["Mango"]
+    )
+except ValidationError as e:
+    print("Validation error for invalid user:", e)
